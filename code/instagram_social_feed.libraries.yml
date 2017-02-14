@@ -1,0 +1,5 @@
+# You can call this name anything you want, doesn't have to name it as instagram_social_feed.ajaxApproveFeed
+instagram_social_feed.ajaxApproveFeed:
+  version: VERSION
+  js:
+    js/instagram_social_feed.js: { weight: -10 }

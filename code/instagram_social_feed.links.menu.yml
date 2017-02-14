@@ -1,0 +1,13 @@
+instagram_social_feed.admin:
+  title: I am a String instagram_social_feed_admin
+  route_name: instagram_social_feed_admin
+  expanded: TRUE
+
+instagram_social_feed.simple:
+  title: I am a String instagram_social_feed_pageone
+  route_name: instagram_social_feed_pageone
+  parent: instagram_social_feed.admin
+
+
+# We can't define a menu link for the page_example_arguments route, because it
+# requires path arguments.

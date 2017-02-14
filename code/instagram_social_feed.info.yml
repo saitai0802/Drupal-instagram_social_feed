@@ -1,0 +1,10 @@
+name: Instagram Social feed
+type: module
+description: 'Pulls instagram feeds Drupal 8.0 - Created by Sai'
+package: Authentication
+
+version: "8.x-0.0"
+core: '8.x'
+
+project: 'instagram_social_feed'
+datestamp: 1429812789

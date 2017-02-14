@@ -1,0 +1,161 @@
+# In order to to create pages it is necessary to define routes for them. A route
+# maps a URL path to a controller. It defines with what function or method will
+# be called when a URL is accessed. The following lines defines three of them
+# for this module.
+
+# Menu items corresponding to these URLs are defined separately in the
+# page_example.menu_links.yml file.
+
+# If the user accesses http://example.com/?q=examples/page_example, the routing
+# system will look for a route with that path. In this case it will find a
+# match, and execute the _controller callback. In this case the callback is
+# defined as a classname
+# ("\Drupal\page_example\Controller\PageExampleController") and a method
+# ("description").
+
+
+# Structure of routes Drupal 8 <<Important>>
+# https://www.drupal.org/node/2092643
+
+# Creating Our Config Entity Type
+# https://codedrop.com.au/blog/creating-custom-config-entities-drupal-8
+instagram_social_feed_admin:
+  path: 'admin/config/media/instagram/admin'
+  defaults:
+    _entity_list: 'feed'
+    _title: 'Instagram Feed'
+  requirements:
+    _permission: 'view feed entity'
+
+
+# Route name can be used in sevaral place (links, redirects, local actions etc.)
+entity.feed.canonical:
+  path: 'admin/config/media/instagram/admin/feed/{feed}'
+  defaults:
+  # Calls the view controller, defined in the annotation of the contact entity
+    _entity_view: 'feed'
+    _title: 'Contact Content'
+  requirements:
+  # Calls the access controller of the entity, $operation 'view'
+    _entity_access: 'feed.view'
+
+
+instagram_social_feed.feed_add:
+  path: 'admin/config/media/instagram/admin/feed/add'
+  defaults:
+  # Calls the form.add controller, defined in the contact entity.
+    _entity_form: feed.add
+    _title: 'Add Contact'
+  requirements:
+    _entity_create_access: 'feed'
+
+entity.feed.edit_form:
+  path: 'admin/config/media/instagram/admin/feed/{feed}/edit'
+  defaults:
+  # Calls the form.edit controller, defined in the contact entity.
+    _entity_form: feed.edit
+    _title: 'Edit Contact'
+  requirements:
+    _entity_access: 'feed.edit'
+
+entity.feed.delete_form:
+  path: 'admin/config/media/instagram/admin/feed/{feed}/delete'
+  defaults:
+    # Calls the form.delete controller, defined in the contact entity.
+    _entity_form: feed.delete
+    _title: 'Delete Contact'
+  requirements:
+    _entity_access: 'feed.delete'
+
+instagram_social_feed.contact_settings:
+  path: 'admin/config/media/instagram/admin/feed/admin/structure/settings'
+  defaults:
+    _form: '\Drupal\content_entity_example\Form\ContactSettingsForm'
+    _title: 'Contact Settings'
+  requirements:
+    _permission: 'administer feed entity'
+
+
+
+
+
+
+# Module Settings
+instagram_social_feed_settings:
+  path: 'admin/config/media/instagram/admin/settings'
+  defaults:
+    _form: '\Drupal\instagram_social_feed\Form\InstagramSocialFeedSettingsForm'
+    _title: 'Instagram Feed'
+    #_title: 'Instagram Feed - Setting'
+  requirements:
+    _permission: 'access simple page'
+
+
+
+instagram_social_feed_moderation:
+  path: 'admin/config/media/instagram/admin/moderation'
+  defaults:
+    _controller: '\Drupal\instagram_social_feed\Controller\InstagramSocialFeedController::moderation'
+    _title: 'Instagram Feed'
+  requirements:
+    _permission: 'access simple page'
+
+
+instagram_social_feed_ajaxGetItems:
+  path: 'admin/config/media/instagram/ajaxGetItems'
+  defaults:
+    _controller: '\Drupal\instagram_social_feed\Controller\InstagramSocialFeedController::ajaxGetItems'
+    _title: 'Instagram Feed'
+  requirements:
+    _permission: 'ajax get items'
+
+instagram_social_feed_ajaxApproveFeed:
+  path: 'admin/config/media/instagram/ajaxApproveFeed'
+  defaults:
+    _controller: '\Drupal\instagram_social_feed\Controller\InstagramSocialFeedController::ajaxApproveFeed'
+    _title: 'Instagram Feed'
+  requirements:
+    _permission: 'access simple page'
+
+instagram_social_feed_ajaxCommentsFeed:
+  path: 'admin/config/media/instagram/ajaxCommentsFeed'
+  defaults:
+    _controller: '\Drupal\instagram_social_feed\Controller\InstagramSocialFeedController::ajaxCommentsFeed'
+    _title: 'Instagram Feed'
+  requirements:
+    _permission: 'access simple page'
+
+
+
+# Testing Data
+# If the user accesses http://example.com/?q=examples/page_example/simple,
+# the routing system will look for a route with that path. In this case it will
+# find a match, and execute the _controller callback. Access to this path
+# requires "access simple page" permission.
+instagram_social_feed_pageone:
+  path: 'admin/config/media/instagram/admin/pageone'
+  defaults:
+    _controller: '\Drupal\instagram_social_feed\Controller\InstagramSocialFeedController::pageone'
+    _title: 'Simple - no arguments'
+  requirements:
+    _permission: 'access simple page'
+
+# If the user accesses
+# http://example.com/?q=examples/page_example/arguments/1/2, the routing system
+# will first look for examples/page_example/arguments/1/2. Not finding a match,
+# it will look for examples/page_example/arguments/1/{*}. Again not finding a
+# match, it will look for examples/page_example/arguments/{*}/2. Yet again not
+# finding a match, it will look for examples/page_example/arguments/{*}/{*}.
+# This time it finds a match, and so it will execute the _controller callback.
+# In this case, it's PageExampleController::arguments().
+
+# Since the parameters are passed to the function after the match, the function
+# can do additional checking or make use of them before executing the callback
+# function. The placeholder names "first" and "second" are arbitrary but must
+# match the variable names in the callback method, e.g. "$first" and "$second".
+instagram_social_feed_pagetwo:
+  path: 'admin/config/media/instagram/admin/pagetwo/{first}/{second}'
+  defaults:
+    _controller: '\Drupal\instagram_social_feed\Controller\InstagramSocialFeedController::pagetwo'
+  requirements:
+    _permission: 'access arguments page'

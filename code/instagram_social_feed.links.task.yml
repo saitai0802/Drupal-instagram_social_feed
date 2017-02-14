@@ -1,0 +1,64 @@
+# There is a link to check how to define local tasks in drupal 8
+# Providing module-defined local tasks
+# https://www.drupal.org/node/2122253
+# Define tabs (local tasks)
+
+# The base_route is used to group together related tabs.
+
+# To provide multiple levels of tabs,
+# use the parent_id to relate a tab to its parent and use the same base_route to group the set of tabs together.
+
+# Note that if parent_id is supplied, then the base_route value can and should be omitted, 
+#since it will be supplied from the parent local task.
+
+instagram_social_feed.admin:
+  title: Admin
+  route_name: instagram_social_feed_admin
+  base_route: instagram_social_feed.admin
+
+instagram_social_feed.moderation:
+  title: Moderation
+  route_name: instagram_social_feed_moderation
+  #parent: instagram_social_feed.admin
+  base_route: instagram_social_feed.admin
+
+instagram_social_feed.settings:
+  title: Settings
+  route_name: instagram_social_feed_settings
+  base_route: instagram_social_feed.admin
+  #parent_id : instagram_social_feed.admin
+
+instagram_social_feed.ajaxGetItems:
+  title: Settings
+  route_name: instagram_social_feed_ajaxGetItems
+
+instagram_social_feed.ajaxApproveFeed:
+  title: Settings
+  route_name: instagram_social_feed_ajaxApproveFeed
+  
+instagram_social_feed.ajaxCommentsFeed:
+  title: Settings
+  route_name: instagram_social_feed_ajaxCommentsFeed
+
+
+
+instagram_social_feed.settings_tab:
+  route_name: instagram_social_feed.contact_settings
+  title: Settings
+  base_route: instagram_social_feed.contact_settings
+
+instagram_social_feed.view:
+  route_name: entity.instagram_social_feed.canonical
+  base_route: entity.instagram_social_feed.canonical
+  title: View
+
+instagram_social_feed.page_edit:
+  route_name: entity.instagram_social_feed.edit_form
+  base_route: entity.instagram_social_feed.canonical
+  title: Edit
+
+instagram_social_feed.delete_confirm:
+  route_name:  entity.instagram_social_feed.delete_form
+  base_route:  entity.instagram_social_feed.canonical
+  title: Delete
+  weight: 10

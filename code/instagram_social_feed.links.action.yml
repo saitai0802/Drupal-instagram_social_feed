@@ -1,0 +1,11 @@
+# All action links for this module
+
+instagram_social_feed.feed_add:
+  # Which route will be called by the link
+  route_name: instagram_social_feed.feed_add
+  title: 'Add Feed'
+
+  # Where will the link appear, defined by route name.
+  appears_on:
+    #- entity.content_entity_example_contact.canonical
+    - instagram_social_feed_admin 

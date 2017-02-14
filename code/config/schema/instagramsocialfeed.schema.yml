@@ -1,0 +1,31 @@
+# Upgrading Drupal 7 Variables to Drupal 8 Configuration
+# https://www.drupal.org/node/1667896
+
+#this file must set to xxxxx.schema.yml
+instagramsocialfeed.settings:
+  type: mapping
+  label: 'Instagram settings'
+  mapping:
+    instagram_social_feed_api_key:
+      type: string
+      label: 'instagram api key'
+    instagram_social_feed_user_id:
+      type: string
+      label: 'instagram client ID'
+    instagram_social_feed_username:
+      type: string
+      label: 'instagram username'
+    instagram_social_feed_passive_timeout:
+      type: string
+      label: 'instagram username'
+    instagram_social_feed_last_run:
+      type: string
+      label: 'instagram username'
+    instagram_social_feed_feed_selection:
+      type: string
+      label: 'instagram username'
+    instagram_social_feed_block_count:
+      type: string
+      label: 'instagram username'
+
+

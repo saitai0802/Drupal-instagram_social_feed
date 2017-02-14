@@ -1,0 +1,129 @@
+<?php
+/**
+ * @file
+ * Module file for page_example_module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+
+/**
+ * @defgroup page_example Example: Page
+ * @ingroup examples
+ * @{
+ * This example demonstrates how a module can display a page at a given URL.
+ *
+ * It's important to understand how the menu system works in order to
+ * implement your own pages. See the Menu Example module for some insight.
+ *
+ * @see menu_example
+ */
+
+/**
+ * Implements hook_help().
+ *
+ * Through hook_help(), a module can make documentation available to the user
+ * for the module as a whole or for specific routes. Where the help appears
+ * depends on the $route_name specified.
+ *
+ * Help text will be displayed in the region designated for help text. Typically
+ * this is the 'Help' region which can be found at admin/structure/block.
+ *
+ * The help text in the first example below, will appear on the simple page at
+ * examples/page_example/simple.
+ *
+ * The second example text will be available on the admin help page (admin/help)
+ * in the list of help topics using the name of the module. To specify help in
+ * the admin section combine the special route name of 'help.page' with the
+ * module's machine name, as in 'help.page.page_example' below.
+ *
+ * @see hook_help()
+ */
+
+function instagram_social_feed_menu_link_defaults() {
+  $links = array();
+  $links['instagram_social_feed.settings'] = array(
+    'title' => 'Recent log messages',
+    'link_title' => 'Instagram feed data settings',
+    'description' => 'Configure global settings for YouTube fields.',
+    'route_name' => 'instagram_social_feed_settings.settings',
+    'parent' => 'system.admin.config.media',
+  );
+}
+
+function instagram_social_feed_toolbar() {
+
+
+  // Build a list of links for the menu.
+  $links = array();
+
+
+  $links['admin_page'] = array(
+    'title' => t('Admin Page'),
+    'url' => Url::fromRoute('instagram_social_feed_admin'),  // instagram_social_feed is module name
+    'options' => array(
+      'title' => t('Enable more examples in on the Extend page.'),
+    ),
+    'fragment' => 'edit-modules-example-modules',
+  );
+  $links['setting_page'] = array(
+    'title' => t('Setting Page'),
+    'url' => Url::fromRoute('instagram_social_feed_settings'),
+    'options' => array(
+      'title' => t('Enable more examples in on the Extend page.'),
+    ),
+  );
+
+
+  //dpm(Url::fromRoute('instagram_social_feed_admin'));
+
+  // Create the examples toolbar render array.
+  $items['instagram_social_feed'] = array(
+    '#type' => 'toolbar_item',
+    'tab' => array(
+      '#type' => 'link',
+      '#title' => t('Instagram'),
+      // @todo: Once it is created, use the example index page.
+      '#url' => Url::fromRoute('<front>'),
+      '#attributes' => array(
+        'title' => t('Developer Examples'),
+        'class' => array('toolbar-icon', 'toolbar-icon-examples'),
+      ),
+    ),
+    'tray' => array(
+      '#heading' => t('Developer Examples'),
+      'shortcuts' => array(
+        '#theme' => 'links__toolbar_example',
+        '#links' => $links,
+        '#attributes' => array(
+          'class' => array('toolbar-menu'),
+        ),
+      ),
+    ),
+    '#weight' => 99,
+    '#attached' => array(
+      'library' => array(
+        'examples/examples.icons',
+      ),
+    ),
+  );
+
+  return $items;
+}
+
+
+function instagram_social_feed_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'page_example_simple':
+      // Help text for the simple page registered for this path.
+      return t('This is help text for the simple page.');
+
+    case 'help.page.page_example':
+      // Help text for the admin section, using the module name in the path.
+      return t("This is help text created in page example's implementation of hook_help().");
+  }
+}
+
+/**
+ * @} End of "defgroup page_example".
+ */
