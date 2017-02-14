@@ -29,4 +29,4 @@ Module Screenshot for reference
 ![Management page](https://github.com/saitai0802/Drupal-instagram_social_feed/blob/master/img/Step2.JPG)
 
 **Getting images from front-end**:<br/>
-![Front-end](https://github.com/saitai0802/Drupal-instagram_social_feed/blob/master/img/Step3.JPG)
+![Front-end](https://github.com/saitai0802/Drupal-instagram_social_feed/blob/master/img/Step3.png)
