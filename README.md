@@ -1,5 +1,5 @@
 # Drupal-instagram_social_feed
-This is drupal module that allows you to create Instagram feeds for your site that will download images from Instagram using filtering by hashtags.  Inspired by exsisting drupal 7 module "Instagram Feeds"
+This is drupal module that allows you to create Instagram feeds for your site that will download images from Instagram using filtering by hashtags.  
 
 This module is inspried by <a href="https://www.drupal.org/project/instagram_feeds" target="_blank">Instagram Feeds</a>. 
 Basically, the main core functions in "Instagram Feeds" are included in this module, but some of the function calls have already been deprecated by Instagram(5/10/2015).<br/><br/>
